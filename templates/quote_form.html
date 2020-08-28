@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quotation Form</title>
+</head>
+<body>
+    <form action = "http://localhost:5000/quote_confirmation" method = "POST">
+         <p>
+         <label for="modulename">Module</label>
+              <select id="module" name="module">
+                   {% for value in itemlist %}
+                   <option value="{{ value }}">{{ value }}</option>
+                   {% endfor %}
+              </select>
+         </p>
+         <p>Client Name<input type = "text" name = "client_name" /></p>
+         <p>Client Address<input type = "text" name = "client_address_1" /></p>
+         <p><input type = "text" name = "client_address_2" /></p>
+         <p>Pin code <input type = "number" name = "pincode" /></p>
+         <p>Quotation number <input type = "text" name = "doc_id" /></p>
+         <p>Quote Validity <input type = "text" name = "quote_validity"></p>
+         <p>
+         <label for="warranty">Warranty period</label>
+         <select id="period" name="warranty">
+         <option value="1">1 yr</option>
+         <option value="2">2 yrs</option>
+         <option value="3">3 yrs</option>
+         <option value="4">4 yrs</option>
+         <option value="5">5 yrs</option>
+         </select>
+         <label for="warranty_optional">Warranty Optional</label>
+         <select id="warrantyoption" name="warranty_optional">
+         <option value="True">True</option>
+         <option value="False">False</option>
+         </select>
+         <label for="amc_optional">AMC Optional</label>
+         <select id="amcoption" name="amc_optional">
+         <option value="True">True</option>
+         <option value="False">False</option>
+         </select>
+         </p>
+         <p>
+         <label for="dsir">Tax exemption</label>
+         <select id="dsir" name="dsir">
+         <option value="True">True</option>
+         <option value="False">False</option>
+         </select>
+         </p>
+         <p><input type = "submit" value = "submit" /></p>
+    </form>
+</body>
+</html>
