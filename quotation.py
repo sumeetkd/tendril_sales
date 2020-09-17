@@ -27,7 +27,11 @@ class quote:
         self.modulename = str(result['module'])
         self.tax_exemption = False if result['dsir'] == 'False' else True
         system = module(self.modulename, self.pincode)
-        self.products, self.addons, self.discounts, self.persona = system.constituentitems()
+        self.products, self.addons, self.discounts, self.persona, self.optional_table = system.constituentitems()
+        print(self.optional_table)
+        if int(result['warranty']) > 1:
+            self.optional_table = self.optional_table or self.warranty_option or self.amc_option
+        print(self.optional_table)
 
     def __taxes__(self):
         if (self.pincode/10000 == 11):
@@ -112,6 +116,7 @@ class quote:
                     'client': client,
                     'persona': persona,
                     'product': offered_solution,
+                    'optional_table': self.optional_table
                 }
         targets = ['sales/quotation.tex']
         for target in targets:

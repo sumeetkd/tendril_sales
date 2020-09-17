@@ -62,9 +62,12 @@ class module:
         productlist = []
         addonlist = []
         discountlist = []
+        optional_table = False
         for item in self.module:
             for product in item["items"]:
-                productlist.append((str(product["name"]), int(product["quantity"]), False if product["optional"] == 'False' else True))
+                optional_status = (False if product["optional"] == 'False' else True)
+                optional_table = optional_table or optional_status
+                productlist.append((str(product["name"]), int(product["quantity"]), optional_status))
             for addon in item["addons"]:
                 print(addon["name"])
                 if (str(addon["name"]) == "Freight, Installation, Training and Commissioning") | (str(addon["name"]) == "Installation, Training and Commissioning"):
@@ -77,4 +80,4 @@ class module:
             print(discountlist)
             persona = [item["persona"]["company"],item["persona"]["signatory"]]
             print(persona)
-        return productlist, addonlist, discountlist, persona
+        return productlist, addonlist, discountlist, persona, optional_table
