@@ -53,15 +53,14 @@ class quote:
         items = self.products
         addons = self.addons
         override_taxes = self.__taxes__()
-        print(override_taxes)
         #override_taxes = TaxDefinitionList([{'tax': 'IGST', 'rate': '5%'}])
         discounts = self.discounts
         warranty_discount = ('0%', 'Warranty Discount')
 
-
         c = PriceCollector()
         for product, qty, optional in items:
             p = products.get_product_by_ident(product)
+            p.reset()
             p.pricing.qty = qty
 
             for name, rate, criteria in discounts:

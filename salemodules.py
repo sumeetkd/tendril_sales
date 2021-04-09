@@ -77,7 +77,5 @@ class module:
             for discount in item["discounts"]:
                 discountlist.append(
                     (str(discount["name"]), str(discount["value"]), lambda x: not x.info.is_consumable and not x.info.is_third_party))
-            print(discountlist)
             persona = [item["persona"]["company"],item["persona"]["signatory"]]
-            print(persona)
         return productlist, addonlist, discountlist, persona, optional_table
